@@ -10,6 +10,11 @@ This project allows you to easily transcode your local video files into a format
 The included video demonstrates how our application streams videos efficiently. You'll see how it loads only the relevant segments based on the user's playback position. Additionally, switching video quality triggers segment reloading and adapts the file size accordingly.
 
 
+
+https://github.com/Sumit0709/local-video-transcoding/assets/91677852/504552a3-57de-43cd-be4b-810d2d29e721
+
+
+
 # Want to run this project?
 
 ## Prerequisite
