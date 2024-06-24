@@ -16,7 +16,7 @@ The included video demonstrates how our application streams videos efficiently. 
 To run this project, you'll need:
 
 - Docker installed
-- An MP4 video file in videos folder named sample.mp4
+- An video file in videos folder named sample.video_format (Accordingly change the value of input_file in the transcode.sh file)
 
 ## Steps to follow 
 

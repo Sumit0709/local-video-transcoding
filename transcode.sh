@@ -19,19 +19,15 @@ mkdir -p "/home/app/videos/outputs/video_${uuid}/${resolution}"
 case $resolution in
     360p)
     ffmpeg -i "$input_file" -vf scale=640:360 -codec:v libx264 -codec:a aac -hls_time 10 -hls_playlist_type vod -hls_segment_filename "${output_file}/segment%03d.ts" -start_number 0 "${output_file}/index.m3u8"
-    # ffmpeg -i "$input_file" -vf scale=360:-1 -c:v libx264 -crf 23 -c:a copy "$output_file"
     ;;
     480p)
     ffmpeg -i "$input_file" -vf scale=854:480 -codec:v libx264 -codec:a aac -hls_time 10 -hls_playlist_type vod -hls_segment_filename "${output_file}/segment%03d.ts" -start_number 0 "${output_file}/index.m3u8"
-    # ffmpeg -i "$input_file" -vf scale=480:-1 -c:v libx264 -crf 23 -c:a copy "$output_file"
     ;;
     720p)
     ffmpeg -i "$input_file" -vf scale=1280:720 -codec:v libx264 -codec:a aac -hls_time 10 -hls_playlist_type vod -hls_segment_filename "${output_file}/segment%03d.ts" -start_number 0 "${output_file}/index.m3u8"
-    # ffmpeg -i "$input_file" -vf scale=720:-1 -c:v libx264 -crf 23 -c:a copy "$output_file"
     ;;
     1080p)
     ffmpeg -i "$input_file" -vf scale=1920:1080 -codec:v libx264 -codec:a aac -hls_time 10 -hls_playlist_type vod -hls_segment_filename "${output_file}/segment%03d.ts" -start_number 0 "${output_file}/index.m3u8"
-    # ffmpeg -i "$input_file" -vf scale=1080:-1 -c:v libx264 -crf 23 -c:a copy "$output_file"
     ;;
 esac
 
@@ -61,5 +57,7 @@ echo -e "$master_playlist" > "${master_file_path}/master.m3u8"  # Write to a fil
 
 aws s3 cp "${master_file_path}/master.m3u8" s3://your-s3-bucket-name/uploads/video_"${uuid}"/master.m3u8
 
+# Clean up temporary file
+rm -r -f "${master_file_path}/master.m3u8"
 
 echo "Transcoding complete!"
